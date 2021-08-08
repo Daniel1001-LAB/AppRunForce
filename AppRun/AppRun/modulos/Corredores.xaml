@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRun.Corredores"
+           
+             Title="Corredores">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar PlaceholderColor="Black" x:Name="search" Text="{Binding BuscarCorredores}" SearchCommand="{Binding BuscarCorredor}"  Placeholder="Buscar Corredores">
+            </SearchBar>
+            <ScrollView>
+                <StackLayout Margin="10">
+                    <ListView RefreshControlColor="OrangeRed" IsPullToRefreshEnabled="True"  IsRefreshing="{Binding Refresc}" SelectedItem="{Binding SelectedCorredor}"   
+                              RowHeight="100"  x:Name="listaCorredores" ItemsSource="{Binding ListOfItems}"  >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame HeightRequest="50" CornerRadius="2">
+                                        <StackLayout  Margin="0" Orientation="Horizontal">
+                                            <StackLayout Padding="-10,-10"  HeightRequest="100" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                <Frame Padding="-10,-10" HeightRequest="100" HorizontalOptions="StartAndExpand" IsClippedToBounds="True" CornerRadius="100">
+                                                    <Image HeightRequest="100"  WidthRequest="100" Source="{Binding image,Converter={StaticResource bisc}}" ></Image>
+                                                </Frame>
+                                            </StackLayout >
+                                            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Vertical">
+                                                <Label FontAttributes="Bold" Text="{Binding name}"></Label>
+                                                <Label FontAttributes="Bold" Text="{Binding direccion}"></Label>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical">
+                                                <Switch IsToggled="{Binding estado}"></Switch>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
